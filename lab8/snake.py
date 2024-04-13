@@ -152,18 +152,16 @@ class Snake:
         screen.blit(score_text, (0, 0))
 
     def draw_level(self):
-        level_font = pygame.font.SysFont("Verdana", 20)  # Уменьшаем размер шрифта на 20
+        level_font = pygame.font.SysFont("Verdana", 20)
         level_text = level_font.render("Level: " + str(self.level), True, colorBLACK)
-        screen.blit(level_text, (WIDTH - level_text.get_width() - 10, 0))  # Помещаем т
+        screen.blit(level_text, (WIDTH - level_text.get_width() - 10, 0))
         
 class Food:
     def __init__(self):
         self.pos = Point(15, 15)
 
     def generate_new_position(self):
-        # Generate a new position for the food
         new_pos = Point(random.randint(0, WIDTH // CELL - 1), random.randint(0, HEIGHT // CELL - 1))
-        # Check if the new position is inside the snake's body
         while new_pos in snake.body:
             new_pos = Point(random.randint(0, WIDTH // CELL - 1), random.randint(0, HEIGHT // CELL - 1))
         self.pos = new_pos
@@ -212,3 +210,4 @@ while not done:
     
     pygame.display.flip()
     clock.tick(snake.speed)
+    
